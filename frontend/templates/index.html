@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wasteless AI | Premium Food Tech</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="auth-mode">
+    
+    <!-- Top Navigation (Desktop) -->
+    <nav class="navbar glass-nav">
+        <div class="nav-container">
+            <div class="brand cursor-pointer" onclick="app.navigate('home')">
+                <div class="brand-icon-wrapper"><i class="fa-solid fa-leaf"></i></div>
+                <span class="brand-text">Wasteless <span class="text-gradient">AI</span></span>
+            </div>
+            
+            <div class="nav-links" id="nav-guest">
+                <a class="nav-link" onclick="app.navigate('home')">Home</a>
+                <a class="nav-link" onclick="app.navigate('features')">Features</a>
+                <a class="nav-link" onclick="app.navigate('login')">Sign In</a>
+                <button class="btn-glow" onclick="app.navigate('register')">Get Started</button>
+            </div>
+
+            <div class="nav-links hidden" id="nav-user">
+                <a class="nav-link" onclick="app.navigate('dashboard')">Dashboard</a>
+                <button class="btn-outline" onclick="app.logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-nav hidden" id="mobile-nav">
+        <div class="mobile-nav-item active" data-target="dashboard" onclick="app.navigate('dashboard')">
+            <i class="fa-solid fa-house-chimney"></i><span>Home</span>
+        </div>
+        <div class="mobile-nav-item" data-target="pantry" onclick="app.navigate('pantry')">
+            <i class="fa-solid fa-camera"></i><span>Scan</span>
+        </div>
+        <div class="mobile-nav-item" data-target="chef" onclick="app.navigate('chef')">
+            <i class="fa-solid fa-wand-magic-sparkles"></i><span>AI Chef</span>
+        </div>
+        <div class="mobile-nav-item" data-target="impact" onclick="app.navigate('impact')">
+            <i class="fa-solid fa-earth-americas"></i><span>Impact</span>
+        </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div id="flash-container"></div>
+
+    <main class="main-content">
+        
+        <!-- ================= 1. HOME VIEW ================= -->
+        <section id="view-home" class="view-section active">
+            <div class="hero">
+                <div class="hero-bg-elements">
+                    <div class="glow-orb orb-1"></div>
+                    <div class="glow-orb orb-2"></div>
+                </div>
+                <div class="hero-content glass-panel">
+                    <span class="badge">Next-Gen Food Management</span>
+                    <h1 class="hero-title">Save More Food.<br>Waste Less.<br><span class="text-gradient">Live Better.</span></h1>
+                    <p class="hero-desc">Your intelligent companion for tracking food waste, making smarter consumption decisions, and building a sustainable future using Semantic Kernel AI.</p>
+                    <div class="hero-actions">
+                        <button class="btn-glow large" onclick="app.navigate('register')">Start Saving Food <i class="fa-solid fa-arrow-right"></i></button>
+                        <button class="btn-outline large" onclick="app.navigate('features')">Explore Features</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-ticker mt-4">
+                <div class="ticker-item"><i class="fa-solid fa-check-circle text-green"></i> 10,000+ Meals Saved</div>
+                <div class="ticker-item"><i class="fa-solid fa-check-circle text-green"></i> 5,000kg CO₂ Offset</div>
+                <div class="ticker-item"><i class="fa-solid fa-check-circle text-green"></i> ₹2M+ Capital Retained</div>
+            </div>
+        </section>
+
+        <!-- ================= 2. FEATURES VIEW ================= -->
+        <section id="view-features" class="view-section">
+            <div class="section-header text-center">
+                <h2>Intelligent <span class="text-gradient">Capabilities</span></h2>
+                <p>Advanced architecture built for un-barcoded commodities and zero-waste paths.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card glass-panel">
+                    <div class="feat-icon bg-gradient-1"><i class="fa-solid fa-camera-retro"></i></div>
+                    <h3>AI Visual Capture</h3>
+                    <p>Use computer vision to isolate, label, and inventory unstructured food items instantly. No barcodes needed.</p>
+                </div>
+                <div class="feature-card glass-panel">
+                    <div class="feat-icon bg-gradient-2"><i class="fa-solid fa-hourglass-half"></i></div>
+                    <h3>Decay Routing</h3>
+                    <p>Scoring algorithms automatically bubble up expiring ingredients to forcefully drain near-spoiled products first.</p>
+                </div>
+                <div class="feature-card glass-panel">
+                    <div class="feat-icon bg-gradient-3"><i class="fa-solid fa-microchip"></i></div>
+                    <h3>AI Recipe Conductor</h3>
+                    <p>Semantic Kernel intercepts soon-to-expire item vectors and outputs zero-waste, culturally native recipe paths.</p>
+                </div>
+                <div class="feature-card glass-panel">
+                    <div class="feat-icon bg-gradient-4"><i class="fa-solid fa-cart-arrow-down"></i></div>
+                    <h3>Quick-Commerce</h3>
+                    <p>Autogenerates a background payload prepared for 1-click cart fulfillment if an optimized recipe lacks minor seasonings.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 3. AUTHENTICATION ================= -->
+        <section id="view-login" class="view-section">
+            <div class="auth-wrapper">
+                <div class="auth-card glass-panel">
+                    <div class="auth-header">
+                        <h2>Welcome Back</h2>
+                        <p>Access your premium kitchen intelligence.</p>
+                    </div>
+                    <form id="login-form" class="modern-form">
+                        <div class="input-group">
+                            <label>Email Address</label>
+                            <div class="input-with-icon">
+                                <i class="fa-regular fa-envelope"></i>
+                                <input type="email" id="login-email" placeholder="hello@wasteless.ai" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Password</label>
+                            <div class="input-with-icon">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" id="login-password" placeholder="••••••••" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-glow w-100 mt-4">Authenticate</button>
+                    </form>
+                    <p class="auth-footer">New to Wasteless AI? <span class="link cursor-pointer" onclick="app.navigate('register')">Create an account</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-register" class="view-section">
+            <div class="auth-wrapper">
+                <div class="auth-card glass-panel">
+                    <div class="auth-header">
+                        <h2>Join the Movement</h2>
+                        <p>Start your zero-waste journey today.</p>
+                    </div>
+                    <form id="register-form" class="modern-form">
+                        <div class="input-group">
+                            <label>Username</label>
+                            <div class="input-with-icon">
+                                <i class="fa-regular fa-user"></i>
+                                <input type="text" id="reg-username" placeholder="EcoWarrior" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Email Address</label>
+                            <div class="input-with-icon">
+                                <i class="fa-regular fa-envelope"></i>
+                                <input type="email" id="reg-email" placeholder="hello@wasteless.ai" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Password</label>
+                            <div class="input-with-icon">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" id="reg-password" placeholder="••••••••" required minlength="6">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-glow w-100 mt-4">Create Account</button>
+                    </form>
+                    <p class="auth-footer">Already a member? <span class="link cursor-pointer" onclick="app.navigate('login')">Sign in</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 4. DASHBOARD ================= -->
+        <section id="view-dashboard" class="view-section">
+            <div class="dashboard-header">
+                <div>
+                    <h2>Hello, <span id="dash-username" class="text-gradient"></span>.</h2>
+                    <p class="subtitle">Here is your kitchen intelligence report.</p>
+                </div>
+            </div>
+
+            <div class="analytics-grid">
+                <div class="stat-card glass-panel">
+                    <div class="stat-icon bg-yellow-light text-yellow"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                    <div class="stat-data">
+                        <h3>₹<span id="dash-savings">0</span></h3>
+                        <p>Capital Saved</p>
+                    </div>
+                </div>
+                <div class="stat-card glass-panel">
+                    <div class="stat-icon bg-green-light text-green"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="stat-data">
+                        <h3><span id="dash-carbon">0</span> kg</h3>
+                        <p>CO₂ Offset</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="module-grid mt-4">
+                <div class="module-card glass-panel cursor-pointer" onclick="app.navigate('pantry')">
+                    <div class="mod-header">
+                        <h3>State Ledger (Pantry)</h3>
+                        <div class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                    <p class="subtitle mt-1">Track items & decay priorities.</p>
+                    <div class="mini-ledger mt-3" id="dash-mini-ledger"></div>
+                </div>
+                
+                <div class="module-card glass-panel cursor-pointer" onclick="app.navigate('chef')">
+                    <div class="mod-header">
+                        <h3>AI Conductor</h3>
+                        <div class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                    <p class="subtitle mt-1">Generate zero-waste paths.</p>
+                    <div class="chef-preview mt-4 text-center">
+                        <div class="pulse-ring">
+                            <i class="fa-solid fa-wand-magic-sparkles fa-2x text-gradient"></i>
+                        </div>
+                        <p class="font-medium mt-3">Semantic Kernel is ready.</p>
+                        <button class="btn-outline w-100 mt-3">Start Cooking</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 5. SMART PANTRY ================= -->
+        <section id="view-pantry" class="view-section">
+            <div class="section-header text-center">
+                <h2>Smart Food <span class="text-gradient">Tracker</span></h2>
+                <p>Upload un-barcoded produce to instantly catalog assets.</p>
+            </div>
+
+            <!-- ACTUAL FILE UPLOAD INPUT -->
+            <div class="upload-container glass-panel text-center">
+                <input type="file" id="camera-input" accept="image/*" capture="environment" hidden>
+                <div class="upload-zone" id="upload-zone" onclick="document.getElementById('camera-input').click()">
+                    <div class="upload-icon-wrapper">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                    </div>
+                    <h3 class="mt-3">Tap to Capture</h3>
+                    <p class="subtitle">Supports loose vegetables & dairy</p>
+                </div>
+                
+                <div class="loader-overlay hidden" id="vision-loader">
+                    <div class="cyber-spinner"></div>
+                    <p class="font-medium mt-3">Azure AI Vision processing image...</p>
+                </div>
+            </div>
+
+            <div class="ledger-container mt-5">
+                <h3 class="mb-3 font-serif">Heuristic Expiry Matrix</h3>
+                <div class="ledger-grid" id="full-ledger"></div>
+                
+                <div id="pantry-action" class="hidden mt-4 text-center">
+                    <button class="btn-glow large w-100" onclick="app.navigate('chef')">Intercept Expiring Items via AI <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 6. AI CHEF ================= -->
+        <section id="view-chef" class="view-section">
+            <div class="section-header text-center">
+                <h2>AI <span class="text-gradient">Recommendations</span></h2>
+                <p>Orchestrating zero-waste paths based on decay priorities.</p>
+            </div>
+
+            <div class="recipe-generator-card glass-panel" id="chef-controls">
+                <div class="modern-form">
+                    <label class="font-medium mb-2 d-block">Enforce Dietary Schema</label>
+                    <select id="diet-schema" class="modern-select mb-4">
+                        <option value="Vegetarian">Vegetarian (Standard)</option>
+                        <option value="Jain">Jain (No Root Veg)</option>
+                        <option value="Vegan">Vegan</option>
+                    </select>
+                    <button class="btn-glow w-100 large" onclick="app.triggerRecipeGeneration()">Generate Optimal Path</button>
+                </div>
+            </div>
+
+            <div class="loader-overlay hidden glass-panel mt-4" id="recipe-loader">
+                <div class="cyber-spinner"></div>
+                <p class="font-medium mt-3">Consulting GPT-4o API...</p>
+            </div>
+
+            <div id="recipe-output" class="recipe-result-card glass-panel hidden mt-4">
+                <div class="result-header">
+                    <h3 id="r-title" class="font-serif recipe-title">Recipe Title</h3>
+                    <span class="badge bg-green mt-2">Zero-Waste Path</span>
+                </div>
+                
+                <div class="result-content mt-4">
+                    <h4 class="font-serif">Critical Assets Utilized</h4>
+                    <div class="tags-container" id="r-ingredients"></div>
+                    
+                    <h4 class="font-serif mt-4">Preparation Workflow</h4>
+                    <ul class="editorial-list" id="r-instructions"></ul>
+
+                    <div class="quick-commerce-box mt-4">
+                        <div class="qc-header">
+                            <h5><i class="fa-solid fa-bolt text-yellow"></i> 1-Click Fulfillment</h5>
+                            <span class="eta-badge">ETA: <span id="r-time">10 mins</span></span>
+                        </div>
+                        <p class="subtitle mt-1 mb-2">Missing seasonings detected.</p>
+                        <div class="missing-tags" id="r-missing"></div>
+                        <button class="btn-outline w-100 mt-3" onclick="alert('Payload dispatched to API')">Autocart Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 7. IMPACT ================= -->
+        <section id="view-impact" class="view-section">
+            <div class="section-header text-center">
+                <h2>Sustainability <span class="text-gradient">Impact</span></h2>
+                <p>Quantifiable metrics aligned with UN SDG 12.3 framework.</p>
+            </div>
+
+            <div class="impact-charts-grid">
+                <div class="chart-card glass-panel dark-panel">
+                    <h3>Financial Retention</h3>
+                    <div class="large-metric text-yellow">₹<span id="imp-savings">0</span></div>
+                    <p class="subtitle text-light">Total household income preserved.</p>
+                </div>
+                
+                <div class="chart-card glass-panel dark-panel">
+                    <h3>Environmental Offset</h3>
+                    <div class="large-metric text-green"><span id="imp-carbon">0</span> kg</div>
+                    <p class="subtitle text-light">GHG emissions prevented.</p>
+                </div>
+
+                <div class="chart-card glass-panel cursor-pointer" onclick="app.navigate('pantry')">
+                    <h3 class="text-forest">Resource Utility</h3>
+                    <div class="large-metric text-forest"><span id="imp-meals">0</span></div>
+                    <p class="subtitle">Complete meals rescued. <br><span class="link mt-1 d-inline-block">Go to Pantry <i class="fa-solid fa-arrow-right"></i></span></p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- App Logic connecting to Flask Backend -->
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
